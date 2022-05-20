@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { LoginDetailService } from '../services/login-detail.service';
 
 @Injectable({
@@ -7,18 +7,24 @@ import { LoginDetailService } from '../services/login-detail.service';
 })
 export class AuthGuardGuard implements CanActivate {
   constructor(
-    private loginService:LoginDetailService
+    private loginService:LoginDetailService,
+    private router:Router
   ){}
   
   canActivate(
     
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean{
-      if(this.loginService.isLoggedIn){
-
+      console.log(this.loginService.isLoggedIn)
+      if(this.loginService.isLoggedIn && this.loginService.userType==="admin"){
+        // if()
+        
+        console.log('guard true')
         return true
       }
       else{
+        console.log('guard false')
+        this.router.navigate(['./unauth'])
         return false
       }
   }

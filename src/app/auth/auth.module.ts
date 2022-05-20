@@ -18,8 +18,8 @@ const routes: Routes = [
       component:NoAccessComponent
       },
       {
-        path:'**',
-        component:PageNotFoundComponent
+        // path:'**',
+        // component:PageNotFoundComponent
         },
 
     

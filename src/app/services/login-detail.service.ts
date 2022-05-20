@@ -12,7 +12,7 @@ export class LoginDetailService{
   ) { }
   /*Method to get login details*/
   isLoggedIn:boolean=false
-  userType:string='non-admin'
+  userType:string='user'
   checkUser(email:any,password:any){
     this.httpClient.get<any>('http://localhost:3000/login').subscribe(
       (res)=>{
@@ -23,7 +23,7 @@ export class LoginDetailService{
           this.isLoggedIn=true;
           this.userType=user.type
           console.log(this.userType);
-          this.router.navigate(['./feature/'])
+          this.router.navigate(['feature'])
         }
       }
     )
